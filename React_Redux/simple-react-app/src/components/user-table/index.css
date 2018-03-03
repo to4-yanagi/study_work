@@ -1,0 +1,20 @@
+.user-table {
+  margin: 32px;
+  width: 600px;
+  border: 2px #808080 solid;
+}
+
+.id-column {
+  width: 10%;
+  border: 2px #808080 solid;
+}
+
+.user-name-column {
+  width: 30%;
+  border: 2px #808080 solid;
+}
+
+.kind-column {
+  width: 30%;
+  border: 2px #808080 solid;
+}

@@ -1,24 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import consts from './consts'
-import defaultUserData from '../../data/default-user-list'
-import './index.css';
+import './index.css'
 
 export default class UserTable extends Component {
-  renderUserData = () => defaultUserData.map(userData => (
-    <tr>
-      <td>{userData.id}</td>
-      <td>{userData.userName}</td>
-      <td>{userData.kind}</td>
+  static propTypes = {
+    userData: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  }
+  static defaultProps = {
+    userData: []
+  }
+  renderUserData = () => this.props.userData.map(userData => (
+    <tr key={userData.id}>
+      <td className="id-column">{userData.id}</td>
+      <td className="user-name-column">{userData.userName}</td>
+      <td className="kind-column">{userData.kind}</td>
     </tr>
   ))
   render = () => (
-    <table>
-      <tr>
-        <td>{consts.id}</td>
-        <td>{consts.userName}</td>
-        <td>{consts.kind}</td>
-      </tr>
-      {this.renderUserData()}
+    <table className="user-table">
+      <thead>
+        <tr>
+          <th className="id-column">{consts.id}</th>
+          <th className="user-name-column">{consts.userName}</th>
+          <th className="kind-column">{consts.kind}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {this.renderUserData()}
+      </tbody>
     </table>
   )
 }

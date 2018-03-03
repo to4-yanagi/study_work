@@ -20,6 +20,6 @@ export default [{
   kind: '一般会員'
 },{
   id: 6,
-  userName: 'silver_A',
+  userName: 'silver_B',
   kind: 'シルバー会員'
 },]
