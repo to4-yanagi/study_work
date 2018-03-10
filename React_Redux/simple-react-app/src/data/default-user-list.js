@@ -1,25 +1,25 @@
 export default [{
   id: 1,
-  userName: 'normal_A',
-  kind: '一般会員'
+  memberName: 'normal_A',
+  memberKind: '一般会員'
 },{
   id: 2,
-  userName: 'silver_A',
-  kind: 'シルバー会員'
+  memberName: 'silver_A',
+  memberKind: 'シルバー会員'
 },{
   id: 3,
-  userName: 'normal_B',
-  kind: '一般会員'
+  memberName: 'normal_B',
+  memberKind: '一般会員'
 },{
   id: 4,
-  userName: 'gold_A',
-  kind: 'ゴールド会員'
+  memberName: 'gold_A',
+  memberKind: 'ゴールド会員'
 },{
   id: 5,
-  userName: 'normal_C',
-  kind: '一般会員'
+  memberName: 'normal_C',
+  memberKind: '一般会員'
 },{
   id: 6,
-  userName: 'silver_B',
-  kind: 'シルバー会員'
+  memberName: 'silver_B',
+  memberKind: 'シルバー会員'
 },]

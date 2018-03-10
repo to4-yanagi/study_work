@@ -56,6 +56,15 @@ jsxをブラウザが解釈するためにbabelやwebpackの設定が必要だ
 
 # ReactでWebページ作り
 
+##  追加したモジュール
+
+- prop-types
+ → React.PropTypesでやろうとしたらESLintにイエローカード貰った
+
+----
+
+# ReactでWebページ作り
+
 ## 作る
 
 あああ
@@ -79,19 +88,28 @@ jestの説明を書く
 
 package.json
 ```
-"testMatch": [
+"dependencies": {
+  "jest": {
+    "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
     ],
+  }
+}
 ```
+---
 
-例：テストしたいコンポネントが
-src/components/table/table.jsxである場合
-以下のいずれかにテストコードを配置することで、テストを実行することができる
+# ReactでWebページ作り
+
+## 自動テストツール
+
+
+例：テストしたいコンポネントがsrc/components/table/index.jsxである場合
+以下のいずれかのパスにテストコードを配置することで、テストを実行することができる（個人的には後者が好み）
 
 <!-- __がうまく表示されなかったのでやむなく<p>タグを使用 -->
 
-1. <p>src/__test__/table.spec.js</p>
-1. <p>src/components/table/table.spac.js</p>
+- <p>src/__tests__/table.js</p>
+- <p>src/components/table/table.spac.js</p>
 
 ---

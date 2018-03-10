@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import defaultUserData from '../../data/default-user-list'
-import UserTable from '../user-table/index.jsx'
+import MemberTable from '../member-table/index.jsx'
+import { appTitle, buttonLabels } from '../../common/consts'
 import './index.css'
 
 export default class Main extends Component {
   state = {
     userDataList: defaultUserData
   }
-  sortOfUserName = () => [...this.state.userDataList].sort(
+  sortOfMemberName = () => [...this.state.userDataList].sort(
     (a, b) => {
-      if (a.userName < b.userName) {
+      if (a.memberName < b.memberName) {
         return -1
-      } else if (a.userName > b.userName) {
+      } else if (a.memberName > b.memberName) {
         return 1
       } else {
         return 0
@@ -21,10 +22,10 @@ export default class Main extends Component {
   renderSortButton = () => (
     <button
       onClick={() => this.setState({
-        userDataList: this.sortOfUserName()
+        userDataList: this.sortOfMemberName()
       })}
     >
-      名前の昇順ソート
+      {buttonLabels.ascSort}
     </button>
   )
   renderClearButton = () => (
@@ -33,17 +34,17 @@ export default class Main extends Component {
         userDataList: defaultUserData
       })}
     >
-      クリア
+      {buttonLabels.clear}
     </button>
   )
   render = () => (
     <div>
       <header className="app-header">
-        <h1 className="app-title">Simple React App</h1>
+        <h1 className="app-title">{appTitle}</h1>
       </header>
       {this.renderSortButton()}
       {this.renderClearButton()}
-      <UserTable
+      <MemberTable
         userData={this.state.userDataList}
       />
     </div>
