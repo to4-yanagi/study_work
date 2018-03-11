@@ -1,7 +1,4 @@
-jest.unmock('./buttons')
-
 import React from 'react'
-import ReactDOM from 'react-dom'
 import TestUtils from 'react-dom/test-utils';
 import Buttons from './Buttons'
 
