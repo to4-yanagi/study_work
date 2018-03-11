@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { tableLabels } from '../../common/consts'
-import './index.css'
+import './member-table.css'
 
 export default class UserTable extends Component {
   static propTypes = {

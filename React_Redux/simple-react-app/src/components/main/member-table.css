@@ -1,5 +1,5 @@
 .user-table {
-  margin: 32px;
+  margin: 16px 32px;
   width: 600px;
   border: 2px #808080 solid;
 }
@@ -10,11 +10,11 @@
 }
 
 .member-name-column {
-  width: 30%;
+  width: 45%;
   border: 2px #808080 solid;
 }
 
 .member-kind-column {
-  width: 30%;
+  width: 45%;
   border: 2px #808080 solid;
 }

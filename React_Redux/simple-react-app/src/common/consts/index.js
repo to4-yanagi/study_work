@@ -7,6 +7,6 @@ export const tableLabels = {
 }
 
 export const buttonLabels = {
-  ascSort: 'ユーザー名の翔順ソート',
+  ascSort: 'ユーザー名の昇順ソート',
   clear: 'クリア'
 }

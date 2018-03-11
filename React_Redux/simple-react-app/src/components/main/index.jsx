@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
+import MemberTable from './member-table'
+import Buttons from './buttons'
 import defaultUserData from '../../data/default-user-list'
-import MemberTable from '../member-table/index.jsx'
-import { appTitle, buttonLabels } from '../../common/consts'
+import { appTitle } from '../../common/consts'
 import './index.css'
 
 export default class Main extends Component {
   state = {
     userDataList: defaultUserData
   }
+  setProperty = data => this.setState({
+    userDataList: data
+  })
   sortOfMemberName = () => [...this.state.userDataList].sort(
     (a, b) => {
       if (a.memberName < b.memberName) {
@@ -19,31 +23,15 @@ export default class Main extends Component {
       }
     }
   )
-  renderSortButton = () => (
-    <button
-      onClick={() => this.setState({
-        userDataList: this.sortOfMemberName()
-      })}
-    >
-      {buttonLabels.ascSort}
-    </button>
-  )
-  renderClearButton = () => (
-    <button
-      onClick={() => this.setState({
-        userDataList: defaultUserData
-      })}
-    >
-      {buttonLabels.clear}
-    </button>
-  )
   render = () => (
     <div>
       <header className="app-header">
         <h1 className="app-title">{appTitle}</h1>
       </header>
-      {this.renderSortButton()}
-      {this.renderClearButton()}
+      <Buttons
+        sortOfMemberName={() => this.setProperty(this.sortOfMemberName())}
+        clear={() => this.setProperty(defaultUserData)}
+      />
       <MemberTable
         userData={this.state.userDataList}
       />
