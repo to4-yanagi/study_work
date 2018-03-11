@@ -14,7 +14,10 @@ export default class Buttons extends Component {
   }
   render = () => (
     <div className="button-space">
-      <button onClick={this.props.sortOfMemberName}>
+      <button
+        onClick={this.props.sortOfMemberName}
+        className="sort-button"
+      >
         {buttonLabels.ascSort}
       </button>
       <button
