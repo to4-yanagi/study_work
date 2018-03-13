@@ -5,12 +5,12 @@ import './member-table.css'
 
 export default class UserTable extends Component {
   static propTypes = {
-    memberList: PropTypes.arrayOf(PropTypes.shape()).isRequired
+    userData: PropTypes.arrayOf(PropTypes.shape()).isRequired
   }
   static defaultProps = {
-    memberList: []
+    userData: []
   }
-  renderUserData = () => this.props.memberList.map(userData => (
+  renderUserData = () => this.props.userData.map(userData => (
     <tr key={userData.id}>
       <td className="id-column">{userData.id}</td>
       <td className="member-name-column">{userData.memberName}</td>
@@ -19,7 +19,6 @@ export default class UserTable extends Component {
   ))
   render = () => (
     <table className="user-table">
-      {console.log(this.props.memberList)}
       <thead>
         <tr>
           <th className="id-column">{tableLabels.id}</th>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import MemberTable from '../../containers/main/member-table'
+import MemberTable from './member-table'
 import Buttons from './buttons'
 import defaultUserData from '../../data/default-user-list'
 import { appTitle } from '../../common/consts'
@@ -9,16 +8,6 @@ import './index.css'
 export default class Main extends Component {
   state = {
     userDataList: defaultUserData
-  }
-  static propTypes = {
-    putMemberList: PropTypes.func.isRequired
-  }
-  static defaultProps = {
-    putMemberList: () => { },
-  }
-  componentWillMount() {
-    // 本来はGETの通信
-    this.props.putMemberList(defaultUserData)
   }
   setProperty = data => this.setState({
     userDataList: data
@@ -43,7 +32,9 @@ export default class Main extends Component {
         sortOfMemberName={() => this.setProperty(this.sortOfMemberName())}
         clear={() => this.setProperty(defaultUserData)}
       />
-      <MemberTable />
+      <MemberTable
+        userData={this.state.userDataList}
+      />
     </div>
   )
 }

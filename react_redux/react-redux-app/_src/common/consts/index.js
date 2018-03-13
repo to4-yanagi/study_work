@@ -1,4 +1,4 @@
-export const appTitle = 'Simple React App'
+export const appTitle = 'React Redux App'
 
 export const tableLabels = {
   id: 'id',
