@@ -19,7 +19,6 @@ export default class UserTable extends Component {
   ))
   render = () => (
     <table className="user-table">
-      {console.log(this.props.memberList)}
       <thead>
         <tr>
           <th className="id-column">{tableLabels.id}</th>
