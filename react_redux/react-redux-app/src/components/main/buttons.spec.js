@@ -1,6 +1,6 @@
 import React from 'react'
 import TestUtils from 'react-dom/test-utils';
-import Buttons from './Buttons'
+import Buttons from './buttons'
 
 describe('Button', () => {
   const props = {
