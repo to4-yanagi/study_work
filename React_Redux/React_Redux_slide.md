@@ -1,5 +1,5 @@
 # React + Reduxで
-# シンプルなCRUDアプリができるまで
+# シンプルなWebアプリができるまで
 
 ----
 
@@ -8,24 +8,42 @@
 1. React.jsってなんだ
 1. セットアップとHello World
 1. ReactでWebページ作り
+1. Reactの限界
 1. Fluxの考え方とRedux
-1. React + ReduxでCRUD可能なWebページ作り
+1. React + ReduxでWebページ作り
 1. まとめ
 
 ----
 
 # React.jsってなんだ
 
-----
+<img src="img/react.png" width="980" height="250">
 
-# React.jsってなんだ
+公式サイト:
+https://reactjs.org/
 
 React.jsはUIのパーツ（構成部品）を作るためのJavascriptライブラリ
 主にフロントエンドエンジニア向け
 
 ----
 
-# セットアップとHello World
+# React.jsってなんだ
+
+## 特徴
+
+以下が分かりやすい
+
+https://html5experts.jp/hokaccha/13301/
+
+要するに
+- コンポネント指向を実現しやすくする
+=> テストしやすい、ソースコード全体としての見通しが良くなる
+- データが更新されると自動的に画面を再描画
+- Virtual DOMという仕組みで差分だけの再描画を実現
+- jsxという独自シンタックスを使う
+=> babel等で変換が必要
+
+あとはソースを見ながらわかっていけば良いです。
 
 ----
 
@@ -33,8 +51,25 @@ React.jsはUIのパーツ（構成部品）を作るためのJavascriptライブ
 
 Reactのセットアップには壁が多い
 
-jsxをブラウザが解釈するためにbabelやwebpackの設定が必要だ
-実際にプロジェクトで使うならESLintやテストも必要だ
+必要なこと
+- node.jsの環境とnpm
+=> nodistやnodebrewもあった方が良い
+- babelなどを用いたトランスパイル
+- webpackなどを用いたビルド（モジュール化）
+- reactのインストール
+
+必須ではないけど
+- ESLint
+- テスト用のフレームワーク
+- 変更のウォッチなど細かい設定
+
+ここまでやってようやくスタートライン
+
+----
+
+# セットアップとHello World
+
+<img src="img/pingu.jpg" width="980" height="600">
 
 ----
 
@@ -42,9 +77,48 @@ jsxをブラウザが解釈するためにbabelやwebpackの設定が必要だ
 
 ## create-react-app
 
-あああ
+Reactを作ったfacebook製（要するに公式だ！）
+Reactの環境構築をコマンド一発で出来るようにしてくれる神ツール
+
+GitHub:
+https://github.com/facebook/create-react-app
+
+わかりやすい日本語解説（ありがたい）
+https://qiita.com/chibicode/items/8533dd72f1ebaeb4b614
 
 ----
+
+# セットアップとHello World
+
+## create-react-appを使う
+
+1. create-react-appを入れる
+```
+npm install -g create-react-app
+```
+
+2. hello worldしたいディレクトリでcreate-react-appを使う
+```
+create-react-app hello-world
+```
+
+以上
+
+----
+
+# セットアップとHello World
+
+<img src="img/mikami.jpeg" width="500" height="600">
+
+----
+
+# セットアップとHello World
+
+### できあがったページを確認する
+
+
+----
+
 
 # ReactでWebページ作り
 
