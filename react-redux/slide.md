@@ -17,6 +17,10 @@
 
 # React.jsってなんだ
 
+----
+
+# React.jsってなんだ
+
 <img src="img/react.png" width="980" height="250">
 
 公式サイト:
@@ -43,13 +47,17 @@ https://html5experts.jp/hokaccha/13301/
 - jsxという独自シンタックスを使う
 => babel等で変換が必要
 
-あとはソースを見ながらわかっていけば良いです。
+これだけわかったらもう書いていこう（体育会系）
 
 ----
 
 # セットアップとHello World
 
-Reactのセットアップには壁が多い
+----
+
+# セットアップとHello World
+
+### Reactのセットアップには壁が多い
 
 必要なこと
 - node.jsの環境とnpm
@@ -58,12 +66,12 @@ Reactのセットアップには壁が多い
 - webpackなどを用いたビルド（モジュール化）
 - reactのインストール
 
-必須ではないけど
+必須ではないけどこれらもあった方が良い
 - ESLint
 - テスト用のフレームワーク
 - 変更のウォッチなど細かい設定
 
-ここまでやってようやくスタートライン
+## ここまでやってようやくスタートライン
 
 ----
 
@@ -116,9 +124,76 @@ create-react-app hello-world
 
 ### できあがったページを確認する
 
+1. create-react-appを実行したディレクトリ下にhello-worldディレクトリができているので移動
+```
+cd hello-world
+```
+
+2. アプリケーションを起動
+```
+// package.jsonに記載されているscript
+npm start
+```
+
+3. http://localhost:3000 にアクセスする
 
 ----
 
+# セットアップとHello World
+
+かっちょいい
+<img src="img/hello-world.png" width="1000" height="500">
+
+----
+
+# セットアップとHello World
+
+## Q. でも結局コイツ何使ってるかわからんの怖くない？
+## A. package.jsonから辿れば良いでしょ
+
+package.json
+```
+{
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  }
+}
+```
+
+----
+
+# セットアップとHello World
+
+<img src="img/bikkuri.jpg" width="1000" height="500">
+
+----
+
+# セットアップとHello World
+
+### Q. 誰だお前(react-scripts)は！
+### A. 情け無用の男! s(ry
+
+色々隠してくれちゃってます。
+依存モジュール以外に、スクリプト類も隠れています。
+
+以下のコマンドで使っているものを全部見えるようになります。
+（一度やったら元に戻せないので注意）
+```
+npm run eject
+```
+
+[私のGitHubコミットログで差分が見られます。](https://github.com/to4-yanagi/study_work/commit/b921a1be3665a31e146c526a7fbe102faccab14c)
+
+遊びでReactを動かす分にはやらなくても良いけどプロジェクトで使ったりする場合には忘れずにやりましょう。
+（隠れているものの細かい解説は時間の都合上割愛）
+
+----
+
+# ReactでWebページ作り
+
+----
 
 # ReactでWebページ作り
 
