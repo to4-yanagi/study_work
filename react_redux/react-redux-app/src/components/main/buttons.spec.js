@@ -4,30 +4,56 @@ import Buttons from './Buttons'
 
 describe('Button', () => {
   const props = {
-    sortOfMemberName: jest.fn(),
-    clear: jest.fn()
+    memberList: [{
+      id: 1,
+      memberName: 'zzz'
+    }, {
+      id: 2,
+      memberName: 'aaa'
+    }],
+    putMemberList: jest.fn()
   }
 
   function setup(className) {
     const instance = TestUtils.renderIntoDocument(
       <Buttons {...props} />
     )
+    if(!className) {
+      return instance
+    }
     return TestUtils.findRenderedDOMComponentWithClass(instance, className)
   }
 
+  describe('sort', () => {
+    it('sortOfMemberNameが呼び出されるとmemberListを名前の昇順に書き換えること', () => {
+      const buttons = setup()
+
+      expect(buttons.sortOfMemberName()).toEqual([
+        {
+          id: 2,
+          memberName: 'aaa'
+        },
+        {
+          id: 1,
+          memberName: 'zzz'
+        }
+      ])
+    })
+  })
+
   describe('click', () => {
-    it('ソートボタンをクリックすると渡したsortOfMemberNameメソッドが実行されること', () => {
+    it('ソートボタンをクリックするとputMemberListが実行されること', () => {
       const buttonNode = setup('sort-button')
 
       TestUtils.Simulate.click(buttonNode)
-      expect(props.sortOfMemberName).toBeCalled()
+      expect(props.putMemberList).toBeCalled()
     })
 
-    it('クリアボタンをクリックすると渡したclearメソッドが実行されること', () => {
+    it('クリアボタンをクリックするとputMemberListが実行されること', () => {
       const buttonNode = setup('clear-button')
 
       TestUtils.Simulate.click(buttonNode)
-      expect(props.clear).toBeCalled()
+      expect(props.putMemberList).toBeCalled()
     })
   })
 })
