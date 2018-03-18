@@ -197,9 +197,24 @@ npm run eject
 
 # ReactでWebページ作り
 
+## 作るもの
+
+会員情報の表示と並べ替えが出来るだけの簡単なWebページ
+
+----
+
+# ReactでWebページ作り
+
 ## 要件
 
-あああ
+### 会員情報表示
+
+- 会員のid、名前、会員種別をテーブル形式で表示する
+
+### アクション
+
+- 「会員名の昇順でソート」ボタンを押すと会員の名前をASCIIコード順でソートする
+- 「クリア」ボタンを押すとテーブルの並び順を初期状態に戻す
 
 ----
 
@@ -209,6 +224,27 @@ npm run eject
 
 - prop-types
  → React.PropTypesでやろうとしたらESLintにイエローカード貰った
+
+----
+
+# ReactでWebページ作り
+
+##  ディレクトリ構成
+
+```
+simple-react-app/
+ ├ config/
+ ├ public/
+ ├ scripts/
+ ├ src/
+   ├ common/ //定数やfuncriosnなどを入れる（今回は定数のみ）
+   ├ components/ //jsxで作成したコンポネント
+     ├ main/ //ページが増えたりしたらここを増やす
+       ├ index.jsx
+       ├ buttons.jsx //ボタンのコンポネント
+       ├ member-table.jsx //会員情報表示テーブルのコンポネント
+   ├ data/
+```
 
 ----
 
@@ -226,10 +262,8 @@ npm run eject
 
 jestを使っている
 
-以下にjestの説明を書く
+TODO: 以下にjestの説明を書く
 
-全部mock化してる
-　→ほんと？unmockしなうても動いた謎を追う
 
 ----
 
@@ -257,11 +291,15 @@ package.json
 
 
 例：テストしたいコンポネントがsrc/components/table/index.jsxである場合
-以下のいずれかのパスにテストコードを配置することで、テストを実行することができる（個人的には後者が好み）
+以下のようなパスにテストコードを配置することで、テストを実行することができる（個人的には後者が好み）
 
 <!-- __がうまく表示されなかったのでやむなく<p>タグを使用 -->
 
 - <p>src/__tests__/table.js</p>
 - <p>src/components/table/table.spac.js</p>
+
+---
+
+# Reactの限界
 
 ---
