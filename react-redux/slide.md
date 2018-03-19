@@ -243,16 +243,207 @@ simple-react-app/
        ├ index.jsx
        ├ buttons.jsx //ボタンのコンポネント
        ├ member-table.jsx //会員情報表示テーブルのコンポネント
-   ├ data/
+   ├ data/ //データベース代わり、初期データが入っている
 ```
 
 ----
 
 # ReactでWebページ作り
 
-## 作る
+## src/index.jsx
 
-あああ
+スタート地点、public/index.htmlからid="root"を探して、Main画面（src/components/main/index.jsx）をレンダリングしている。
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Main from './components/main/index.jsx';
+import registerServiceWorker from './registerServiceWorker';
+import './index.css';
+
+ReactDOM.render(<Main />, document.getElementById('root'));
+registerServiceWorker();
+
+```
+
+----
+
+# ReactでWebページ作り
+
+## src/components/main/index.jsx（part1）
+
+Reactのコンポネントは基本的にReact.Componentを継承したクラスとして定義
+stateにはこのコンポネント内で使用する状態（たとえばデータ、検索条件、チェックの有無など）をまとめて持つ
+ここでは、data/default-user-listにあるデータをstateの初期値として投入している
+
+```
+import React, { Component } from 'react'
+import defaultUserData from '../../data/default-user-list'
+
+export default class Main extends Component {
+  state = {
+    userDataList: defaultUserData
+  }
+（中略）
+}
+
+```
+
+----
+
+# ReactでWebページ作り
+
+## src/components/main/index.jsx（part2）
+
+stateが更新されるとrender()内にある要素が自動的に再描画される。
+なお、複数のコンポネントはreturnできない（div要素などでwrapする）
+
+```
+  render = () => (
+    <div>
+      <header className="app-header">
+        <h1 className="app-title">{appTitle}</h1>
+      </header>
+    （中略）
+    </div>
+  )
+
+```
+
+----
+
+# ReactでWebページ作り
+
+## src/components/main/index.jsx（part3）
+
+子のコンポネントを呼び出す際に、プロパティを渡すことができる
+
+以下の場合、src/components/main/member-table.jsxをレンダリングする際に、プロパティとしてこのコンポネントが持つstateであるuserDataListを渡している（part1で定義したアイツだ）
+
+```
+import MemberTable from './member-table'
+
+<MemberTable
+  userData={this.state.userDataList}
+/>
+
+```
+
+----
+
+# ReactでWebページ作り
+
+## src/components/main/index.jsx（part4）
+
+Buttonsには押された時にどう動くかを定義した関数(sortOfMemberNameとclear)を渡している
+
+```
+import Buttons from './buttons'
+
+  <Buttons
+    sortOfMemberName={() => this.setProperty(this.sortOfMemberName())}
+    clear={() => this.setProperty(defaultUserData)}
+  />
+
+```
+
+----
+
+# ReactでWebページ作り
+
+## src/components/main/index.jsx（part5）
+
+stateの値を変更する場合は、this.setState()を使用する。
+そうすることでrender()が再度呼ばれ、再描画が走る
+
+```
+  setProperty = data => this.setState({
+    userDataList: data
+  })
+```
+
+以下の例のように直接書き換えるのはNG
+```
+  setProperty = dataList => this.state.userDataList = data;
+  setProperty = soloData => this.state.userDataList.push(soloData);
+```
+
+----
+
+# ReactでWebページ作り
+
+## src/components/main/member-table.jsx（part1）
+
+親コンポネントから貰ったプロパティがある場合は、stateの代わりにpropを使用する。（勿論stateとの併用も可）
+
+```
+export default class UserTable extends Component {
+  // 受け取るpropsの型を指定する。詳細は以下
+  // https://qiita.com/koba04/items/bc13d1f42964278ae14e
+  static propTypes = {
+    userData: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  }
+  // 何も受け取らなかった場合の値を指定
+  static defaultProps = {
+    userData: []
+  }
+ (中略)
+}
+```
+
+----
+
+# ReactでWebページ作り
+
+## src/components/main/member-table.jsx（part2）
+
+受け取ったpropsはthis.props.{key}で使用できる。
+
+リスト形式のデータはarray.prototyoe.map()などで効率よく描写できる。以下の7行の記述でどれだけuserDataが増えてもtableBodyをすべて描写してくれる。
+
+```
+  renderUserData = () => this.props.userData.map(userData => (
+    <tr key={userData.id}>
+      <td className="id-column">{userData.id}</td>
+      <td className="member-name-column">{userData.memberName}</td>
+      <td className="member-kind-column">{userData.memberKind}</td>
+    </tr>
+  ))
+```
+
+----
+
+# ReactでWebページ作り
+
+## src/components/main/buttons.jsx
+
+onClickにボタン押下時に行うアクションを指定する。
+（今回は親(index.jsx)から貰ったsortOfMemberName()関数）
+
+```
+  <button
+    onClick={this.props.sortOfMemberName}
+    className="sort-button"
+  >
+    {buttonLabels.ascSort}
+  </button>
+```
+
+----
+
+# ReactでWebページ作り
+
+その他にもなんやかんややって...
+
+----
+
+# ReactでWebページ作り
+
+動いた！（ちゃっちい）
+
+<img src="img/simple-react-app.png" width="1000" height="500">
+
+ソートもクリアもちゃんと動くのでまぁ充分よ
 
 ----
 
@@ -260,17 +451,19 @@ simple-react-app/
 
 ## 自動テストツール
 
-jestを使っている
+アプリが動いたのでテストを書きます（順番が逆）
+jestを使用する。こちらもfacebook製のテスティングフレームワークだ。
 
-TODO: 以下にjestの説明を書く
+公式: https://facebook.github.io/jest/
+GitHub: https://github.com/facebook/jest
 
+なんとcreate-react-appには最初から組み込まれている（有能）
 
 ----
 
 # ReactでWebページ作り
 
 ## 自動テストツール
-
 
 package.json
 ```
