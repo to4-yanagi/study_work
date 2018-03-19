@@ -493,6 +493,102 @@ package.json
 
 ---
 
+# ReactでWebページ作り
+
+## src/components/main/buttons.spec.js（part1）
+
+今回は試しにボタンのコンポネントをテストする
+以下では、Buttonsコンポネントに渡すpropsを定義している。
+srotOfMemberName,clearともに関数であるため、jestのMockFunctiosnを使用
+
+```
+describe('Button', () => {
+  const props = {
+    sortOfMemberName: jest.fn(),
+    clear: jest.fn()
+  }
+```
+
+---
+
+# ReactでWebページ作り
+
+## src/components/main/buttons.spec.js（part2）
+
+以下は対象となるボタンのnodeを返す関数
+本来はenzyme(https://github.com/airbnb/enzyme)等を使うとよりやりやすいらしいが、なるべくバニラに近い状態でやりたかったのでReact Test Utilities(https://reactjs.org/docs/test-utils.html)でやっている
+
+```
+  function setup(className) {
+    const instance = TestUtils.renderIntoDocument(
+      <Buttons {...props} />
+    )
+    return TestUtils.findRenderedDOMComponentWithClass(instance, className)
+  }
+```
+
+---
+
+# ReactでWebページ作り
+
+## src/components/main/buttons.spec.js（part3）
+
+テスト部分、ちゃんとsortOfMemberNameが呼び出されているかの確認
+
+```
+  it('ソートボタンをクリックすると渡したsortOfMemberNameメソッドが実行されること', () => {
+      const buttonNode = setup('sort-button')
+
+      TestUtils.Simulate.click(buttonNode)
+      expect(props.sortOfMemberName).toBeCalled()
+    })
+```
+
+---
+
+# ReactでWebページ作り
+
+## src/components/main/buttons.spec.js（part3）
+
+テスト部分、ちゃんとclearが呼び出されているかの確認
+
+```
+  it('クリアボタンをクリックすると渡したclearメソッドが実行されること', () => {
+      const buttonNode = setup('clear-button')
+
+      TestUtils.Simulate.click(buttonNode)
+      expect(props.clear).toBeCalled()
+    })
+```
+
+---
+
+# ReactでWebページ作り
+
+## 実行結果
+
+テスト成功が確認できる
+これでソート機能に問題が起きた時に、少なくともstateの受け渡しの部分には問題が無いことが担保できる。
+
+<img src="img/react-test.png" width="1000" height="300">
+
+---
+
 # Reactの限界
+
+---
+
+# Reactの限界
+
+一見便利なように見えるReactだが、実際にプロジェクトで利用しようとすると、以下のような問題があることにすぐに気付くはずだ
+
+1. 子から親へのstateの受け渡しが不可能
+1. コンポネントのネストが深くなった時にstateを受け渡す回数も増えて行く
+
+どちらもホワイトボードで説明する（ダイナミック手抜き）
+
+---
+
+# fluxの考え方とRedux
 
 ---
