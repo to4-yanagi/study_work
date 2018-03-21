@@ -224,7 +224,12 @@ npm run eject
 ##  追加したモジュール
 
 - prop-types
- → React.PropTypesでやろうとしたらESLintにイエローカード貰った
+=> propを受け取る場合に、その型を指定するために使用
+=> React.PropTypesでやろうとしたらESLintにイエローカード貰った
+
+```
+npm i --save prop-types
+```
 
 ----
 
@@ -668,6 +673,53 @@ facebookは以下の図を用いてfluxについて説明する
 
 ## Reduxとは
 
+先述のfluxを実現するためのフレームワーク、以下の3原則に基づく
 
+1. Single source of truth
+=> stateは一つのstoreの中に保存されること、シングルトンパターン（https://ja.wikipedia.org/wiki/Singleton_%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3）
+2. State is read-only
+=> stateを直接変更することはできない、変更する唯一の方法はactionのemit
+3. Changes are made with pure functions
+=> Reducer（stateがどのように変化するかを指定する）は純粋関数である
+
+これらもソースを見て理解していこう
 
 ---
+
+# React + ReduxでWebページ作り
+
+----
+
+# React + ReduxでWebページ作り
+
+## 要件
+
+- ReactでWebページ作り、の項で作ったものをReduxを導入して書き換える
+
+----
+
+# React + ReduxでWebページ作り
+
+##  追加したモジュール
+
+- redux
+=> reduxの基本機能(createStoreなど)を提供するモジュール
+
+- react-redux
+=> resctとreduxを結ぶモジュール
+
+```
+npm i --save redux react-redux
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+色々書く
+
+----
+
+# まとめ
+
+----
