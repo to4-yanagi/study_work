@@ -46,6 +46,7 @@ https://html5experts.jp/hokaccha/13301/
 - Virtual DOMという仕組みで差分だけの再描画を実現
 - jsxという独自シンタックスを使う
 => babel等で変換が必要
+- DOM操作にさよならバイバイ
 
 これだけわかったらもう書いていこう（体育会系）
 
@@ -489,7 +490,7 @@ package.json
 <!-- __がうまく表示されなかったのでやむなく<p>タグを使用 -->
 
 - <p>src/__tests__/table.js</p>
-- <p>src/components/table/table.spac.js</p>
+- <p>src/components/table/table.spec.js</p>
 
 ---
 
@@ -589,6 +590,84 @@ describe('Button', () => {
 
 ---
 
+# Reactの限界
+
+## まとめ
+
+- Reactはあくまでコンポネント(MVCで言うとV部分)の実装、管理に特化したフレームワーク
+- 巨大なWebシステム作り、データの流れの制御などをしっかり設計せずに行おうとするとかえって煩雑化し、「これならjQueryの方が良かった」という状況を生む
+- 全然違うじゃん！すっごいフレームワークあるからって私プロジェクトメンバーに言ったのに、Reactを使えばすべてよくなるんだよって。私バカみたいじゃん！
+
+---
+
+# Reactの限界
+
+## 「もういいよ！私Reactやめる！」
+
+<img src="img/react-yameru.jpeg" width="1000" height="400">
+
+---
+
 # fluxの考え方とRedux
+
+---
+
+# fluxの考え方とRedux
+
+## fluxとは
+
+facebookが提唱した、reactなどのUIを持つアプリケーションを実装する際に用いるデザインパターン(MVCみたいなあれ)の一種
+
+公式のDocs:
+http://facebook.github.io/flux/docs/overview.html#content
+参考:
+https://qiita.com/sl2/items/ff7a07c00f545d245a5c
+https://app.codegrid.net/entry/react-ex-1
+https://qiita.com/knhr__/items/5fec7571dab80e2dcd92
+
+----
+
+# fluxの考え方とRedux
+
+## fluxとは
+
+facebookは以下の図を用いてfluxについて説明する
+（詳細は参考ページを見ていきながら解説する）
+
+<img src="img/flux.png" width="1000" height="250">
+
+---
+
+# fluxの考え方とRedux
+
+## fluxの特徴
+
+- データの流れが一方向で簡潔
+- データの管理が一箇所(store)で行われることによりコンポネントがネストしていたり、データフローが複雑であってもソースが複雑になるのを防ぎやすい
+- 表示（view）とデータ（store）が疎結合
+
+---
+
+# fluxの考え方とRedux
+
+## fluxを実装するフレームワーク
+
+「flux フレームワーク」というワードでググると「flux戦争」なんて言葉が出てくるぐらい、fluxを実現するための手段を様々な人（組織）が公開しています。
+
+代表的なもの
+- facebook/flux: https://github.com/facebook/flux
+- Redux: https://github.com/reactjs/redux
+- fluxxor: https://github.com/BinaryMuse/fluxxor
+- fluxible: https://github.com/yahoo/fluxible
+
+ここ最近、ようやくReduxが頭一つ抜けてきた感があります。
+
+---
+
+# fluxの考え方とRedux
+
+## Reduxとは
+
+
 
 ---
