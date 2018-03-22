@@ -217,6 +217,10 @@ npm run eject
 - 「会員名の昇順でソート」ボタンを押すと会員の名前をASCIIコード順でソートする
 - 「クリア」ボタンを押すとテーブルの並び順を初期状態に戻す
 
+### その他
+
+- サーバー側は今回は作らない
+
 ----
 
 # ReactでWebページ作り
@@ -713,6 +717,29 @@ npm i --save redux react-redux
 ```
 
 ----
+
+# React + ReduxでWebページ作り
+
+##  ディレクトリ構成
+
+```
+react-redux-app/
+ ├ config/
+ ├ public/
+ ├ scripts/
+ ├ src/
+   ├ actions/ //イベントに応じて発火するアクションを入れる
+   ├ common/
+   ├ components/ //jsxで作成したコンポネント
+     ├ main/ //ページが増えたりしたらここを増やす
+   ├ containers/ //reactとreduxを結ぶ働きをする
+     ├ main/ //ページが増えたりしたらここを増やす
+   ├ reducers/ //actionとstateから新しいstoreを作成する
+   ├ data/
+```
+
+----
+
 
 # React + ReduxでWebページ作り
 
