@@ -740,13 +740,268 @@ react-redux-app/
 
 ----
 
+# React + ReduxでWebページ作り
+
+## storeを作る
+
+src/index.jsにて、以下のように、createStoreでstoreを作成し、Providerに渡す
+
+```
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './rootReducer';
+import Main from './containers/main/main';
+
+const Store = createStore(rootReducer)
+
+ReactDOM.render(
+  <Provider store={Store}>
+    <Main />
+  </Provider>,
+  document.getElementById('root')
+);
+registerServiceWorker();
+
+```
+
+----
 
 # React + ReduxでWebページ作り
 
-色々書く
+## reducerを作る（part1）
+
+storeの中身は今回はsrc/rootReducer下で定義
+reducerは分割できるので、reducersというフォルダの下に使う分を定義していく
+
+```
+import { combineReducers } from 'redux';
+import member from './reducers/member';
+
+export default combineReducers({
+  member, //reducerが増えたらここに追加していく
+});
+
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## reducerを作る（part2）
+
+reducerの役割はシンプルで、既存のstateとアクションから渡ってきた値を合体させて新しいstateとして返す。
+src/reducers/member.js
+
+```
+const initialState = {
+  memberList: []
+};
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case 'PUT_MEMBER_LIST':
+      return {
+        ...state, 
+        memberList: action.memberList
+      };
+    default:
+      return state;
+  }
+}
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## ActionとActionCreaterを作る
+
+今回は一緒くたになっている、本来、'PUT_MEMBER_LIST'の部分は定数化するべき（typeは他のactionと被ってはいけないため）
+src/actions/member
+
+```
+export const putMemberList = memberList => {
+  return {
+    type: 'PUT_MEMBER_LIST',
+    memberList
+  }
+}
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## Containerを作る（part1）
+
+mapStateToPropsではstateをフィルタリングする
+
+src/containers/buttons.js
+
+```
+function mapStateToProps(state) {
+  return {
+    memberList: state.member.memberList
+  };
+}
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## Containerを作る（part2）
+
+mapDispatchToPropsでは変更を伝えるアクションを作成する
+dispatch()を忘れると変更がreducerまで伝わらないので注意
+
+src/containers/buttons.js
+
+```
+function mapDispatchToProps(dispatch) {
+  return {
+    putMemberList: (memberList) => {
+      dispatch(putMemberList(memberList));
+    },
+  };
+}
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## Containerを作る（part3）
+
+reduxの世界(mapStateToProps, mapDispatchToProps)とreactの世界(components/main/buttons.jsx)の結合
+
+src/containers/buttons.js
+
+```
+import { connect } from 'react-redux';
+import { putMemberList } from '../../actions/member';
+import Buttons from '../../components/main/buttons.jsx';
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Buttons);
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## 呼び方（part1）
+
+Componentsじゃなくてcontainerを呼び出す（reduxの世界と繋がっているから）
+
+src/conponents/index.jsx
+
+```
+import Buttons from '../../containers/main/buttons'
+
+  render = () => (
+    <div>
+      <header className="app-header">
+        <h1 className="app-title">{appTitle}</h1>
+      </header>
+      <Buttons />
+      <MemberTable />
+    </div>
+  )
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## 呼び方（part2）
+
+PropsTypes等を定義するのはReact同様
+
+src/conponents/buttons.jsx
+
+```
+  static propTypes = {
+    memberList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    putMemberList: PropTypes.func.isRequired
+  }
+  static defaultProps = {
+    memberList: [],
+    putMemberList: () => { }
+  }
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## 呼び方（part3）
+
+使う際も特に意識することはない（mapDispatchToPropsでdispatch呼んでるからね）
+
+src/conponents/buttons.jsx
+
+```
+  <button
+    onClick={() => this.props.putMemberList(defaultUserData)}
+    className="clear-button"
+  >
+    {buttonLabels.clear}
+  </button>
+```
+
+----
+
+# React + ReduxでWebページ作り
+
+## reducerテスト
+
+reducerはpureな関数なのでとてもテストしやすい
+
+src/reducers/member.spec.js
+```
+describe('members reducer', () => {
+  it('何も渡さない場合にinitialStateを返すこと', () => {
+    expect(member(undefined, {})).toEqual(
+      {
+        memberList: []
+      }
+    )
+  }),
+})
+```
+----
+
+# React + ReduxでWebページ作り
+
+## actionテスト
+
+
+src/actions/member.spec.js
+```
+import { putMemberList } from './member';
+ 
+describe('actions', () => {
+  it('PUT_MEMBRER_LISTアクションを生成すること', () => {
+    const expectedAction = {
+      type: 'PUT_MEMBER_LIST',
+      memberList
+    }
+    expect(putMemberList(memberList)).toEqual(expectedAction)
+  })
+})
+```
+----
+
+# まとめ
 
 ----
 
 # まとめ
+
+- とてもスケールしやすくなった
+- テストもしやすい
+- 
 
 ----
