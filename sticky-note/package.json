@@ -2,7 +2,7 @@
   "name": "belligerent-tea",
   "version": "0.0.0",
   "description": "No description",
-  "author": null,
+  "author": "to4-yanagi",
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
