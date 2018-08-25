@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
-import { Button, Icon, Card } from 'react-native-elements';
+import { Text, View, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { Button, Card } from 'react-native-elements';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 export default class StickyNote extends Component {
