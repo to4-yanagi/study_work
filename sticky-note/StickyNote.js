@@ -9,7 +9,6 @@ export default class StickyNote extends Component {
     isDateTimePickerVisible: false,
     titleText: '',
     contentText: '',
-    // 時刻表示用にmomentを使用する
     limitDateTime: moment().format('YYYY年MM月DD日 HH時mm分')
   };
 
