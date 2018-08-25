@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
-// 付箋のコンポネントに一意なキーを設定するためにuuidを利用する。
-// https://www.npmjs.com/package/uuid
 import uuidv4 from 'uuid/v4'
 import { Button } from 'react-native-elements';
 import StickyNote from './StickyNote';
@@ -11,22 +9,23 @@ export default class App extends React.Component {
     StickyNoteList: [],
   };
 
+  deleteStickyNote = uuid => {
+    const stickyNoteList = this.state.StickyNoteList;
+    const newList = stickyNoteList.filter(note => note.key != uuid);
+    this.setState({ StickyNoteList: newList });
+  }
+
   addStickyNote = () => {
     const stickyNoteList = this.state.StickyNoteList;
     const uuid = uuidv4();
     stickyNoteList.push(
-      <StickyNote key={uuid} />
+      <StickyNote key={uuid} uuid={uuid} deleteStickyNote={this.deleteStickyNote} />
     );
     this.setState({ StickyNoteList: stickyNoteList });
   };
 
   render() {
     return (
-      // KeyboardAvoidingView内にテキスト入力が可能なコンポネントがあった場合
-      // 入力欄とソフトウェアキーボードが被らないように自動的に避ける
-      // https://facebook.github.io/react-native/docs/keyboardavoidingview
-      // ScrollViewの縦幅を超えた時に自動的にスクロールする
-      // https://facebook.github.io/react-native/docs/scrollview
       <KeyboardAvoidingView
         style={styles.container}
         behavior="padding"
