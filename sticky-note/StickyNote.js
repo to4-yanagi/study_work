@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
-// Cardの説明
-// https://react-native-training.github.io/react-native-elements/docs/card.html
 import { Card } from 'react-native-elements';
 
 export default class StickyNote extends Component {
+  state = {
+    titleText: '',
+    contentText: '',
+  };
   render() {
     return (
       <Card
@@ -12,6 +14,8 @@ export default class StickyNote extends Component {
         title={
           <View style={styles.titleContainer}>
             <TextInput
+              value={this.state.titleText}
+              onChangeText={value => this.setState({ titleText: value })}
               placeholder="タイトルを入力"
               placeholderTextColor="#7c7c7c"
               underlineColorAndroid={'rgba(0,0,0,0)'}
@@ -20,6 +24,8 @@ export default class StickyNote extends Component {
           </View>
         }>
         <TextInput
+          value={this.state.contentText}
+          onChangeText={value => this.setState({ contentText: value })}
           placeholder="内容を入力"
           placeholderTextColor="#7c7c7c"
           multiline
