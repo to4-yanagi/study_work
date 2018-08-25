@@ -1,41 +1,26 @@
 import * as React from 'react';
+// react-nativeのコンポネントの説明や取りうるプロパティ等は公式のdocs参照
+// https://facebook.github.io/react-native/docs/text
 import { Text, View, StyleSheet } from 'react-native';
-import { Constants } from 'expo';
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
-
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-elements'; // Version can be specified in package.json
-
+// ↓ReactのComponentの説明
+// https://reactjs.org/docs/react-component.html
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.paragraph}>
-          Change code in the editor and watch it change on your phone! Save to get a shareable url.
+      <View>
+        <Text style={styles.text}>
+          Hi.
         </Text>
-        <Card title="Local Modules">
-          <AssetExample />
-        </Card>
       </View>
     );
   }
 }
 
+// CSS in JSが基本になる。
+// https://facebook.github.io/react-native/docs/stylesheet
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
-  },
-  paragraph: {
+  text: {
     margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
+  }
 });
